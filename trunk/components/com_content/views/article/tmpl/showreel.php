@@ -12,17 +12,22 @@ $tmpl = JURI::base()."templates/onoffline/";
 ?>
 <div id="page" class="mh640">
     <section id="header">
-        <p class="float_left p20l"><a href="index.php"><img src="<?php echo $tmpl;?>img/logo.jpg" id="logo"/></a></p>
-        <div class="float_right" style="padding-right:35px;padding-top:27px;">
-            <a href="https://www.facebook.com/onoffline.dk" target=""><img src="<?php echo $tmpl;?>img/btn-fb.jpg" alt=""></a>
+        <p class="float_left p20l"><a href="index.php"><img src="<?php echo $tmpl;?>img/logo.jpg"></a></p>
+        <div class="cb"></div>
+        <div class="flash_top"><a href="index.php"><img src="<?php echo $tmpl;?>img/lineshow.gif"></a></div>
+    </section>
+
+    <nav class="font_nenu" id="nav_main smoothmenu1">
+        {module Sub menu}
+    </nav>
+
+    <section id="main" class="p50t p45l p20r">
+        <h3>showreel</h3>
+        <div style="width:770px;">
+            <iframe width="770" height="433" frameborder="0" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src="<?php echo strip_tags($this->item->introtext);?>"></iframe>
+            <?php echo $this->item->fulltext;?>
         </div>
         <div class="cb"></div>
     </section>
 
-    <section id="main">
-        <div id="bgr"  style="height: 560px;position: relative;width: 848px;" >
-            <img id="bgrim" src="<?php echo $tmpl;?>img/3.gif" />
-            <?php echo $this->item->text; ?>
-        </div>
-    </section>
 </div>
