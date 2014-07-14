@@ -22,6 +22,7 @@ class ContactControllerContact extends JControllerForm
 
 	public function submit()
 	{
+		print_r($_POST);exit;
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
