@@ -190,6 +190,7 @@ class AllVideoShareModelVideos extends AllVideoShareModel {
 		 $row->title = AllVideoShareFallback::safeString($row->title);
 	  	 if(!$row->slug) $row->slug = $row->title;
 		 $row->slug  = JFilterOutput::stringURLSafe($row->slug);
+         $row->targeturl = JRequest::getVar('targeturl', '', 'post', 'string');
 	  	 $row->description = JRequest::getVar('description', '', 'post', 'string', JREQUEST_ALLOWHTML);
 		 $row->thirdparty  = JRequest::getVar('thirdparty', '', 'post', 'string', JREQUEST_ALLOWRAW);
 	  

@@ -18,7 +18,7 @@ class AllVideoShareControllerVideos extends AllVideoShareController {
    function __construct() {
         parent::__construct();
     }
-	
+    
 	function videos() {
 	    $document = JFactory::getDocument();
 		$vType = $document->getType();

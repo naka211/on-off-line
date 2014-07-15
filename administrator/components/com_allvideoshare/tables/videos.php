@@ -37,6 +37,7 @@ class AllVideoShareTableVideos extends JTable {
 	var $access = null;
 	var $ordering = null;	
 	var $published = 0;	
+    var $targeturl = null;	
 
 	function __construct(& $db) {
 		parent::__construct('#__allvideoshare_videos', 'id', $db);

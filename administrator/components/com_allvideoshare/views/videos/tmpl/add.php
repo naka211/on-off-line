@@ -82,6 +82,10 @@ defined('_JEXEC') or die('Restricted access');
         <td class="avskey"><?php echo JText::_('THIRD_PARTY_EMBEDCODE'); ?></td>
         <td><textarea name="thirdparty" rows="6" cols="50" ></textarea></td>
       </tr>
+      <tr class="avskey">
+        <td class="avskey"><?php echo JText::_('Target URL'); ?></td>
+        <td><input type="text" name="targeturl" size="60" /></td>
+      </tr>
       <tr>
         <td class="avskey"><?php echo JText::_('DESCRIPTION'); ?></td>
         <td><?php echo AllVideoShareFallback::getEditor('description'); ?></td>
@@ -152,13 +156,13 @@ function valForm() {
 	}
 	
 	if(method == 'upload') {
-		if(form.upload_video.value == '') {
+		/*if(form.upload_video.value == '') {
        		alert( "<?php echo JText::_( 'YOU_MUST_ADD_A_VIDEO', true); ?>" );
        		return false;
 	    } else {
 			isAllowed = checkExtension('VIDEO', form.upload_video.value, videoExtensions);
 			if(isAllowed == false) 	return false;
-		}
+		}*/
 		
 		if(form.upload_hd.value) {
 			isAllowed = checkExtension('HD VIDEO', form.upload_hd.value, videoExtensions);

@@ -15,7 +15,7 @@ require_once( JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_allvideoshar
 
 class AllVideoShareControllerVideos extends AllVideoShareController {
 
-   function __construct() {
+   function __construct() { 
         parent::__construct();
     }
 	
@@ -30,5 +30,39 @@ class AllVideoShareControllerVideos extends AllVideoShareController {
 		$view->setLayout('default');
 		$view->display();
 	}
-			
+	
+    function loadVideo(){
+        $db=& JFactory::getDBO();
+
+        $id = JRequest::getVar('id');
+        
+        $query="SELECT * FROM #__allvideoshare_videos WHERE published='1' AND id= ".$id;
+                
+        $db->setQuery( $query ); 
+        $video_current = $db->loadObject();
+        $html = '<div class="txt_content">		           
+                    <div id="player1">	
+                        <iframe width="410" height="231" frameborder="0" src="'.$video_current->targeturl.'"></iframe>
+                    </div>
+                </div>
+                
+                <div class="video_info">
+                        <div id="scrollbar2">
+                        <div class="scrollbar">
+                             <div class="track">
+                               <div class="thumb">
+                                 <div class="end"></div>
+                               </div>
+                             </div>
+                           </div>
+                         <div class="viewport">
+                            <div class="overview">
+                            '.$video_current->description.'
+                           </div>
+                      </div>
+                     </div>
+                </div>';
+         echo $html;
+         exit;
+    }
 }

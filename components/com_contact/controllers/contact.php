@@ -22,7 +22,6 @@ class ContactControllerContact extends JControllerForm
 
 	public function submit()
 	{
-		print_r($_POST);exit;
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
@@ -70,7 +69,7 @@ class ContactControllerContact extends JControllerForm
 			return false;
 		}
 
-		$validate = $model->validate($form, $data);
+		/*$validate = $model->validate($form, $data);
 
 		if ($validate === false)
 		{
@@ -97,7 +96,7 @@ class ContactControllerContact extends JControllerForm
 			$this->setRedirect(JRoute::_('index.php?option=com_contact&view=contact&id=' . $stub, false));
 
 			return false;
-		}
+		}*/
 
 		// Validation succeeded, continue with custom handlers
 		$results	= $dispatcher->trigger('onValidateContact', array(&$contact, &$data));
@@ -163,18 +162,33 @@ class ContactControllerContact extends JControllerForm
 
 			$name		= $data['contact_name'];
 			$email		= JStringPunycode::emailToPunycode($data['contact_email']);
-			$subject	= $data['contact_subject'];
-			$body		= $data['contact_message'];
+			$title	= $data['contact_title'];
+			$text		= $data['contact_text'];
+            
+            $company		= $data['contact_company'];
+            $zip		= $data['contact_zip'];
+            $city		= $data['contact_city'];
+            $phone		= $data['contact_phone'];
 
 			// Prepare email body
-			$prefix = JText::sprintf('COM_CONTACT_ENQUIRY_TEXT', JUri::base());
-			$body	= $prefix . "\n" . $name . ' <' . $email . '>' . "\r\n\r\n" . stripslashes($body);
+			/*$prefix = JText::sprintf('COM_CONTACT_ENQUIRY_TEXT', JUri::base());
+			$body	= $prefix . "\n" . $name . ' <' . $email . '>' . "\r\n\r\n" . stripslashes($body);*/
+            
+            $body  = '';
+			$body 	.= JText::_( 'Name' ) . ' : ' . $name ."\n";
+			$body 	.= JText::_( 'Title' ) . ' : ' . $title ."\n";
+			$body 	.= JText::_( 'Company' ) . ' : ' . $company ."\n";
+			$body 	.= JText::_( 'Zip' ) . ' : ' . $zip ."\n";
+			$body 	.= JText::_( 'City' ) . ' : ' . $by ."\n";
+			$body 	.= JText::_( 'Phone' ) . ' : ' . $phone ."\n";
+			$body 	.= JText::_( 'Email' ) . ' : ' . $email ."\n";
+			$body 	.= JText::_( 'Content' ) . ' : ' . stripslashes($text);
 
 			$mail = JFactory::getMailer();
 			$mail->addRecipient($contact->email_to);
 			$mail->addReplyTo(array($email, $name));
 			$mail->setSender(array($mailfrom, $fromname));
-			$mail->setSubject($sitename . ': ' . $subject);
+			$mail->setSubject($sitename . ': ' . $title);
 			$mail->setBody($body);
 			$sent = $mail->Send();
 

@@ -59,7 +59,7 @@ $data = $this->data;
       <tr id="upload_data_video">
         <td class="avskey"><?php echo JText::_('VIDEO'); ?></td>
         <td id="upload_video"><?php if($data->video) { ?>
-          <input name="upload_video" readonly="readonly" value="<?php echo $data->video; ?>" size="47" />
+          <input name="upload_video" readonly value="<?php echo $data->video; ?>" size="47" />
           <input type="button" name="change" value="Change" onclick="changeMode('video')" />
           <?php } else { ?>
           <input type="file" name="upload_video" maxlength="100" />
@@ -69,7 +69,7 @@ $data = $this->data;
       <tr id="upload_data_hd">
         <td class="avskey"><?php echo JText::_('HD_VIDEO'); ?></td>
         <td id="upload_hd"><?php if($data->hd) { ?>
-          <input name="upload_hd" readonly="readonly" value="<?php echo $data->hd; ?>" size="47" />
+          <input name="upload_hd" readonly value="<?php echo $data->hd; ?>" size="47" />
           <input type="button" name="change" value="Change" onclick="changeMode('hd')" />
           <?php } else { ?>
           <input type="file" name="upload_hd" maxlength="100" />
@@ -79,7 +79,7 @@ $data = $this->data;
       <tr id="upload_data_thumb">
         <td class="avskey"><?php echo JText::_('THUMB'); ?></td>
         <td id="upload_thumb"><?php if($data->thumb) { ?>
-          <input name="upload_thumb" readonly="readonly" value="<?php echo $data->thumb; ?>" size="47" />
+          <input name="upload_thumb" readonly value="<?php echo $data->thumb; ?>" size="47" />
           <input type="button" name="change" value="Change" onclick="changeMode('thumb')" />
           <?php } else { ?>
           <input type="file" name="upload_thumb" maxlength="100" />
@@ -89,7 +89,7 @@ $data = $this->data;
       <tr id="upload_data_preview">
         <td class="avskey"><?php echo JText::_('PREVIEW'); ?></td>
         <td id="upload_preview"><?php if($data->preview) { ?>
-          <input name="upload_preview" readonly="readonly" value="<?php echo $data->preview; ?>" size="47" />
+          <input name="upload_preview" readonly value="<?php echo $data->preview; ?>" size="47" />
           <input type="button" name="change" value="Change" onclick="changeMode('preview')" />
           <?php } else { ?>
           <input type="file" name="upload_preview" maxlength="100" />
@@ -107,6 +107,10 @@ $data = $this->data;
       <tr id="data_thirdparty">
         <td class="avskey"><?php echo JText::_('THIRD_PARTY_EMBEDCODE'); ?></td>
         <td><textarea name="thirdparty" rows="6" cols="50" ><?php echo $data->thirdparty; ?></textarea></td>
+      </tr>
+      <tr>
+        <td class="avskey"><?php echo JText::_('Target URL'); ?></td>
+        <td><input type="text" name="targeturl" size="60" value="<?php echo $data->targeturl; ?>" /></td>
       </tr>
       <tr>
         <td class="avskey"><?php echo JText::_('DESCRIPTION'); ?></td>
@@ -179,13 +183,13 @@ function valForm() {
 	}
 	
 	if(method == 'upload') {
-		if(form.upload_video.value == '') {
+		/*if(form.upload_video.value == '') {
        		alert( "<?php echo JText::_( 'YOU_MUST_ADD_A_VIDEO', true); ?>" );
        		return false;
 	    } else {
 			isAllowed = checkExtension('VIDEO', form.upload_video.value, videoExtensions);
 			if(isAllowed == false) 	return false;
-		}
+		}*/
 		
 		if(form.upload_hd.value) {
 			isAllowed = checkExtension('HD VIDEO', form.upload_hd.value, videoExtensions);

@@ -23,9 +23,90 @@ $isResponsive = ($config[0]->responsive == 1) ? 'class="avs_responsive"' : '';
 $document = JFactory::getDocument();
 $document->addStyleSheet( JRoute::_("index.php?option=com_allvideoshare&view=css"),'text/css',"screen");
 $document->addStyleSheet( JURI::root() . "components/com_allvideoshare/css/allvideoshareupdate.css",'text/css',"screen");
+$tmpl = JURI::base()."templates/onoffline/";
 ?>
+<script language="javascript">
+jQuery( document ).ready(function() {
+	loadVideo = function(i){
+        jQuery.ajax({
+            type: "POST",
+            url: "<?php echo JURI::base();?>index.php?option=com_allvideoshare&view=video&task=loadVideo",
+            data: { id: i }
+        }).done(function( html ) {
+            $('#videoPlayer').html(html);
+            jQuery('#scrollbar2').tinyscrollbar();
+        });
+    }
+});
+</script>
+<div id="page" class="mh640">
+    <section id="header">
+        <p class="float_left p20l"><a href="index.php"><img src="<?php echo $tmpl;?>img/logo.jpg"></a></p>
+        <div class="cb"></div>
+        <div class="flash_top"><a href="#"><img src="<?php echo $tmpl;?>img/lineshow.gif"></a></div>
+    </section>
 
-<?php if($this->params->get('show_'.$header, 1)) : ?>
+    <nav class="font_nenu" id="nav_main smoothmenu1">
+        {module Sub menu}
+    </nav>
+
+    <section id="main" class="p50t p45l p20r">
+        <h3>Video</h3>
+        <div class="w142 float_left osX">
+            <div id="scrollbar1">
+                <div class="scrollbar">
+                    <div class="track">
+                      <div class="thumb">
+                        <div class="end"></div>
+                      </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="overview">
+                        <ul class="list_video">
+                            <?php foreach($videos as $video){?>
+                            <li><a href="javascript:void(0);" onClick="loadVideo(<?php echo $video->id;?>)"><img width="109" height="62" src="<?php echo $video->thumb;?>" alt="<?php echo $video->title;?>"></a></li>
+                            <?php }?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="videoPlayer">
+            <div class="txt_content">		           
+                <div id="player1">	
+                    <iframe width="410" height="231" frameborder="0" src="<?php echo $videos[0]->targeturl;?>"></iframe>
+                </div>
+            </div>
+    
+            <div class="video_info">
+                <div id="scrollbar2">
+                    <div class="scrollbar">
+                         <div class="track">
+                           <div class="thumb">
+                             <div class="end"></div>
+                           </div>
+                         </div>
+                       </div>
+                     <div class="viewport">
+                        <div class="overview">
+                        <?php echo $videos[0]->description;?>
+                       </div>
+                  </div>
+                 </div>
+            </div>
+        </div>
+        <div class="cb"></div>
+    </section>
+</div>
+<script>
+    jQuery(document).ready(function() {
+        jQuery('#scrollbar1, #scrollbar2').tinyscrollbar();
+    });
+</script>
+<?php 
+return;
+if($this->params->get('show_'.$header, 1)) : ?>
 	<h2> <?php echo $this->escape($this->params->get($header)); ?> </h2>
 <?php endif; ?>
 <div id="avs_gallery<?php echo $this->escape($this->params->get('pageclass_sfx')); ?>" <?php echo $isResponsive; ?>>

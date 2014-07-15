@@ -31,7 +31,7 @@ $user		= JFactory::getUser();
     </nav>
     
     <section id="main" class="p50t p45l p20r">
-        <h3>Hvem er On Off Line</h3>
+        <h3><?php echo $this->item->title; ?></h3>
         <div class="osX1">
             <div class="content_left scroll-pane">
                 <?php echo $this->item->text; ?>
