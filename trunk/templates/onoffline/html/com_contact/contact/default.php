@@ -37,22 +37,22 @@ jQuery( document ).ready(function() {
         <div class="form_contact">
             <form id="contactForm" name="emailForm" method="post" class="form-validate" action="#">
                 <label>Navn:</label>
-                <input type="text" id="name" name="name"><br>
+                <input type="text" id="name" name="jform[contact_name]"><br>
                 <label>Titel.:</label>
-                <input type="text" name="title" id="title"><br>
+                <input type="text" name="jform[contact_title]" id="title"><br>
                 <label>Firma:</label>
-                <input type="text" name="company" id="company"><br>
+                <input type="text" name="jform[contact_company]" id="company"><br>
                 <label>Postnr.:</label>
-                <input type="text" name="zip" id="zip" maxlength="4"  class="w90 float_left">
+                <input type="text" name="jform[contact_zip]" id="zip" maxlength="4"  class="w90 float_left">
                 <label class="w40 p10l">By:</label>
-                <input type="text" name="by" id="by" class="w169 float_left">
+                <input type="text" name="jform[contact_city]" id="by" class="w169 float_left">
                 <br class="cb">
                 <label>Telefon:</label>
-                <input type="text" name="phone" id="phone"><br>
+                <input type="text" name="jform[contact_phone]" id="phone"><br>
                 <label>Email:</label>
-                <input type="text" name="email" id="email"><br>
+                <input type="text" name="jform[contact_email]" id="email"><br>
                 <label>Besked:</label>
-                <textarea rows="" cols="" id="text" name="text"></textarea><br>
+                <textarea rows="" cols="" id="text" name="jform[contact_text]"></textarea><br>
                 <label>&nbsp;</label>				        
                 <a href="javascript:void(0);" onClick="submitContactForm();"><img src="<?php echo $tmpl;?>img/bt_send.jpg" alt=""></a>
                 <br class="cb">
@@ -60,6 +60,7 @@ jQuery( document ).ready(function() {
                 <input type="hidden" name="task" value="contact.submit" />
                 <input type="hidden" name="return" value="<?php echo $this->return_page;?>" />
                 <input type="hidden" name="id" value="<?php echo $this->contact->slug; ?>" />
+                <?php echo JHtml::_( 'form.token' ); ?>
             </form>
         </div>
         <div style="line-height:25px;" class="contact_info">
