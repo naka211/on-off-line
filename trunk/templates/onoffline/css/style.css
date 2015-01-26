@@ -239,3 +239,4 @@ footer a {font-weight: bold;}
 /*******14/07/2014*******/
 .float_right {float: right;}
 .menu_showreel{border-bottom:1px solid #000;font-size:15px;left:603px;padding-left:80px;position:absolute;top:325px}
+input.btnSend {background: url(../img/bt_send.jpg) no-repeat; width: 60px; height: 24px; border: none; text-indent: -99999px; display: block;}

@@ -37,9 +37,11 @@ $user		= JFactory::getUser();
                 <?php echo $this->item->text; ?>
             </div>
         </div>
+        <?php if($images->image_intro){?>
         <div class="w360 float_left p5l">
             <img width="360" height="270" alt="" src="<?php echo $images->image_intro;?>">
         </div>
+        <?php }?>
         <div class="cb"></div>
     </section>
 </div>
