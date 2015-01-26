@@ -13,14 +13,13 @@ $cparams = JComponentHelper::getParams('com_media');
 
 jimport('joomla.html.html.bootstrap');
 $tmpl = JURI::base()."templates/onoffline/";
+JHTML::_('behavior.formvalidation');
 ?>
-<script language="javascript">
-jQuery( document ).ready(function() {
-	submitContactForm = function(){
-		jQuery("#contactForm").submit();
-	}
-});
-</script>
+<style>
+.invalid {
+    border-color: red !important;
+}
+</style>
 <div id="page" class="mh640">
     <section id="header">
         <p class="float_left p20l"><a href="index.php"><img src="<?php echo $tmpl;?>img/logo.jpg"></a></p>
@@ -35,9 +34,9 @@ jQuery( document ).ready(function() {
     <section id="main" class="p50t p45l p20r">
         <h3>Kontakt</h3>
         <div class="form_contact">
-            <form id="contactForm" name="emailForm" method="post" class="form-validate" action="#">
-                <label>Navn:</label>
-                <input type="text" id="name" name="jform[contact_name]"><br>
+            <form id="contactForm" name="emailForm" method="post" class="form-validate" action="index.php">
+                <label>Navn *:</label>
+                <input type="text" id="name" name="jform[contact_name]" class="required"><br>
                 <label>Titel.:</label>
                 <input type="text" name="jform[contact_title]" id="title"><br>
                 <label>Firma:</label>
@@ -47,14 +46,14 @@ jQuery( document ).ready(function() {
                 <label class="w40 p10l">By:</label>
                 <input type="text" name="jform[contact_city]" id="by" class="w169 float_left">
                 <br class="cb">
-                <label>Telefon:</label>
-                <input type="text" name="jform[contact_phone]" id="phone"><br>
-                <label>Email:</label>
-                <input type="text" name="jform[contact_email]" id="email"><br>
+                <label>Telefon *:</label>
+                <input type="text" name="jform[contact_phone]" id="phone" class="required"><br>
+                <label>Email *:</label>
+                <input type="text" name="jform[contact_email]" id="email" class="required validate-email"><br>
                 <label>Besked:</label>
                 <textarea rows="" cols="" id="text" name="jform[contact_text]"></textarea><br>
-                <label>&nbsp;</label>				        
-                <a href="javascript:void(0);" onClick="submitContactForm();"><img src="<?php echo $tmpl;?>img/bt_send.jpg" alt=""></a>
+                <label>&nbsp;</label><label style="width:300px;">Felter markeret med * skal udfyldes</label><br />
+                <label>&nbsp;</label><input class="btnSend validate" type="submit" value="Send">
                 <br class="cb">
                 <input type="hidden" name="option" value="com_contact" />
                 <input type="hidden" name="task" value="contact.submit" />

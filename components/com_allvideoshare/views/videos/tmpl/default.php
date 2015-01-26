@@ -34,7 +34,7 @@ jQuery( document ).ready(function() {
             data: { id: i }
         }).done(function( html ) {
             $('#videoPlayer').html(html);
-            jQuery('#scrollbar2').tinyscrollbar();
+            jQuery('#scrollbar2').tinyscrollbar({sizethumb: 14});
         });
     }
 });
@@ -101,7 +101,7 @@ jQuery( document ).ready(function() {
 </div>
 <script>
     jQuery(document).ready(function() {
-        jQuery('#scrollbar1, #scrollbar2').tinyscrollbar();
+        jQuery('#scrollbar1, #scrollbar2').tinyscrollbar({sizethumb: 14});
     });
 </script>
 <?php 
